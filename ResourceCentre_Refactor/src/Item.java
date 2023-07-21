@@ -25,7 +25,7 @@ public class Item {
 	
 	public String showAvailability(boolean isAvailable) {
 		String avail;
-
+		 
 		if (isAvailable == true) {
 			avail = "Yes";
 		} else {
