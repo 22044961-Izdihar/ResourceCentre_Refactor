@@ -409,7 +409,7 @@ public class ResourceCentre {
 	}
 	
 	//================================= Option 5 Search (CURD- Update)=================================
-	public static String searchDueDateCamcorder(ArrayList<Camcorder> camcorderList) {
+	public static void searchDueDateCamcorder(ArrayList<Camcorder> camcorderList) {
 		String output = String.format("%-10s %-30s %-10s %-10s %-20s\n", "ASSET TAG", "DESCRIPTION",
 				"AVAILABLE", "DUE DATE","OPTICAL ZOOM");
 		String dueDate = Helper.readString("Enter due date (dd/MM/yyyy) > ");
@@ -422,10 +422,10 @@ public class ResourceCentre {
 				System.out.println("No camcorder found with date input!");
 			}
 		}
-		return output;
+		System.out.println(output);;
 	}
 	
-	public static String searchDueDateChromebook(ArrayList<Chromebook> chromebookList) {
+	public static void searchDueDateChromebook(ArrayList<Chromebook> chromebookList) {
 		String output = String.format("%-10s %-30s %-10s %-10s %-20s\n", "ASSET TAG", "DESCRIPTION",
 				 "AVAILABLE", "DUE DATE","OPERATING SYSTEM");
 		String dueDate = Helper.readString("Enter due date (dd/MM/yyyy) > ");
@@ -438,7 +438,7 @@ public class ResourceCentre {
 				System.out.println("No chromebook found with date input!");
 			}
 		}
-		return output;
+		System.out.println(output);
 	}
 }
 
