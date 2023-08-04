@@ -120,6 +120,7 @@ public class ResourceCentre {
 					
 				}
 
+				
 			} else if (option == OPTION_QUIT) {
 				System.out.println("Bye!");
 			} else {
