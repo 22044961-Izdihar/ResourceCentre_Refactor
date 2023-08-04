@@ -115,9 +115,26 @@ public class ResourceCentre {
 				int subOption = Helper.readInt("Enter Option > ");
 				if (subOption == 1) { //1: Search for a particular item and details
 					itemTypeMenu();
-					
-				}else { //2: 5Search for a particular item by due date
-					
+					int itemType = Helper.readInt("Enter option to select item type > ");
+					if(itemType == 1) {
+						
+					}else if (itemType == 2) {
+						
+					}else {
+						System.out.println("Invalid Option");
+					}
+				}else if (subOption == 2) { //2: 5Search for a particular item by due date
+					itemTypeMenu();
+					int itemType = Helper.readInt("Enter option to select item type > ");
+					if(itemType == 1) {
+						
+					}else if (itemType == 2) {
+						searchDueDateChromebook(chromebookList);
+					}else {
+						System.out.println("Invalid Option");
+					}
+				}else {
+					System.out.println("Invalid Option");
 				}
 
 				
@@ -196,6 +213,18 @@ public class ResourceCentre {
 		System.out.println(output);
 	}
 
+	public static String searchDueDateChromebook(ArrayList<Chromebook> chromebookList) {
+		String output = String.format("%-10s %-30s %-10s %-10s %-20s\n", "ASSET TAG", "DESCRIPTION",
+				 "AVAILABLE", "DUE DATE","OPERATING SYSTEM");
+		String dueDate = Helper.readString("Enter due date (dd/MM/yyyy) > ");
+		for(Chromebook cb: chromebookList) {
+			if(cb.getDueDate().equals(dueDate)) {
+				output += String.format("%-10s %-30s %-10s %-10s %-20s\n", cb.getAssetTag(), cb.getDescription(),
+						 cb.getIsAvailable(), cb.getDueDate(), cb.getOs());
+			}
+		}
+		return output;
+	}
 	//================================= Option 2 Add (CRUD - Create)=================================
 	public static Camcorder inputCamcorder() {
 		String tag = Helper.readString("Enter asset tag > ");
