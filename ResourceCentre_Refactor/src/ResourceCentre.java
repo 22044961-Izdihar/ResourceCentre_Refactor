@@ -41,6 +41,7 @@ public class ResourceCentre {
 		ArrayList<Chromebook> chromebookList = new ArrayList<Chromebook>();
 
 		camcorderList.add(new Camcorder("CC001", "Sony HDR-CX405", 35));
+		camcorderList.add(new Camcorder("CC010", "Sony HDRZ-CX405", 36));
 		camcorderList.add(new Camcorder("CC002", "Panasonic HC-MDH2", 10));
 		chromebookList.add(new Chromebook("CB001", "ASUS Chromebook ", "Win 10"));
 		chromebookList.add(new Chromebook("CB002", "HP Chromebook", "Win 10"));
@@ -133,6 +134,10 @@ public class ResourceCentre {
 					int itemType = Helper.readInt("Enter option to select item type > ");
 					if (itemType == 1) {
 						searchDueDateCamcorder(camcorderList);
+					}else if (itemType == 2) {
+						searchDueDateChromebook(chromebookList);
+					}else {
+						System.out.println("Invalid Option");
 					}
 				}
 
@@ -408,11 +413,13 @@ public class ResourceCentre {
 		String output = String.format("%-10s %-30s %-10s %-10s %-20s\n", "ASSET TAG", "DESCRIPTION", "AVAILABLE",
 				"DUE DATE", "OPTICAL ZOOM");
 		String dueDate = Helper.readString("Enter due date (dd/MM/yyyy) > ");
+		int flag = 0;
 		for (Camcorder cc : camcorderList) {
 			if (cc.getDueDate().equals(dueDate)) {
 				output += String.format("%-10s %-30s %-10s %-10s %-20s\n", cc.getAssetTag(), cc.getDescription(),
 						cc.getIsAvailable(), cc.getDueDate(), cc.getOpticalZoom());
-			} else {
+			flag++;
+			}else if(flag == 0){
 				System.out.println("No camcorder found with date input!");
 			}
 		}
@@ -424,11 +431,13 @@ public class ResourceCentre {
 		String output = String.format("%-10s %-30s %-10s %-10s %-20s\n", "ASSET TAG", "DESCRIPTION", "AVAILABLE",
 				"DUE DATE", "OPERATING SYSTEM");
 		String dueDate = Helper.readString("Enter due date (dd/MM/yyyy) > ");
+		int flag = 0;
 		for (Chromebook cb : chromebookList) {
 			if (cb.getDueDate().equals(dueDate)) {
 				output += String.format("%-10s %-30s %-10s %-10s %-20s\n", cb.getAssetTag(), cb.getDescription(),
 						cb.getIsAvailable(), cb.getDueDate(), cb.getOs());
-			} else {
+				flag++;
+			}else if(flag == 0){
 				System.out.println("No chromebook found with date input!");
 			}
 		}
