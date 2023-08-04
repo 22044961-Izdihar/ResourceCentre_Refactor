@@ -30,7 +30,7 @@ public class ResourceCentre {
 	/**
 	 * 
 	 */
-	private static final int OPTION_QUIT = 5;
+	private static final int OPTION_QUIT = 6;
 
 	public static void main(String[] args) {
 
@@ -109,6 +109,16 @@ public class ResourceCentre {
 				} else {
 					System.out.println("Invalid type");
 				}
+				
+			} else if (option == 5) {
+				System.out.println("1: Search for a particular item and details\n2: Search for a particular item by due date");
+				int subOption = Helper.readInt("Enter Option > ");
+				if (subOption == 1) { //1: Search for a particular item and details
+					itemTypeMenu();
+					
+				}else { //2: 5Search for a particular item by due date
+					
+				}
 
 			} else if (option == OPTION_QUIT) {
 				System.out.println("Bye!");
@@ -135,7 +145,8 @@ public class ResourceCentre {
 		System.out.println("2. Add item");
 		System.out.println("3. Loan item");
 		System.out.println("4. Return item");
-		System.out.println("5. Quit");
+		System.out.println("5. Search for specific items");
+		System.out.println("6. Quit");
 		Helper.line(80, "-");
 
 	}
@@ -146,7 +157,7 @@ public class ResourceCentre {
 		Helper.line(80, "-");
 	}
 
-	//================================= Option 1 View (CRUD - Read) =================================
+	//================================= Option 1 View (CRUD - Read) ========================================
 	public static String retrieveAllCamcorder(ArrayList<Camcorder> camcorderList) {
 		String output = "";
 
