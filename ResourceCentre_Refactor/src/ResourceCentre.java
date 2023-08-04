@@ -132,6 +132,26 @@ public class ResourceCentre {
 					int itemType = Helper.readInt("Enter option to select item type > ");
 					if(itemType == 1) {
 						searchDueDateCamcorder(camcorderList);
+					}
+				}
+			} else if (option == 5) {
+				System.out.println("1: Search for a particular item and details\n2: Search for a particular item by due date");
+				int subOption = Helper.readInt("Enter Option > ");
+				if (subOption == 1) { //1: Search for a particular item and details
+					itemTypeMenu();
+					int itemType = Helper.readInt("Enter option to select item type > ");
+					if(itemType == 1) {
+						
+					}else if (itemType == 2) {
+						
+					}else {
+						System.out.println("Invalid Option");
+					}
+				}else if (subOption == 2) { //2: 5Search for a particular item by due date
+					itemTypeMenu();
+					int itemType = Helper.readInt("Enter option to select item type > ");
+					if(itemType == 1) {
+						searchDueDateCamcorder(camcorderList);
 					}else if (itemType == 2) {
 						searchDueDateChromebook(chromebookList);
 					}else {
@@ -147,8 +167,10 @@ public class ResourceCentre {
 			} else {
 				System.out.println("Invalid option");
 			}
-
 		}
+
+
+				
 
 	}
 
