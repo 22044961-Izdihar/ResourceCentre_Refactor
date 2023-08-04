@@ -6,6 +6,10 @@ public class ResourceCentre {
 	/**
 	 * 
 	 */
+	private static final int OPTION_SEARCH = 5;
+	/**
+	 * 
+	 */
 	private static final int ITEM_TYPE_CHROMEBOOK = 2;
 	/**
 	 * 
@@ -30,7 +34,7 @@ public class ResourceCentre {
 	/**
 	 * 
 	 */
-	private static final int OPTION_QUIT = 5;
+	private static final int OPTION_QUIT = 6;
 
 	public static void main(String[] args) {
 
@@ -58,7 +62,7 @@ public class ResourceCentre {
 				// Add a new item
 				ResourceCentre.setHeader("ADD");			
 				itemTypeMenu();
-				
+		
 				int itemType = Helper.readInt("Enter option to select item type > ");
 
 				if (itemType == ITEM_TYPE_CAMCORDER) {
@@ -109,7 +113,35 @@ public class ResourceCentre {
 				} else {
 					System.out.println("Invalid type");
 				}
+				
+			} else if (option == OPTION_SEARCH) {
+				System.out.println("1: Search for a particular item and details\n2: Search for a particular item by due date");
+				int subOption = Helper.readInt("Enter Option > ");
+				if (subOption == 1) { //1: Search for a particular item and details
+					itemTypeMenu();
+					int itemType = Helper.readInt("Enter option to select item type > ");
+					if(itemType == 1) {
+						
+					}else if (itemType == 2) {
+						
+					}else {
+						System.out.println("Invalid Option");
+					}
+				}else if (subOption == 2) { //2: 5Search for a particular item by due date
+					itemTypeMenu();
+					int itemType = Helper.readInt("Enter option to select item type > ");
+					if(itemType == 1) {
+						searchDueDateCamcorder(camcorderList);
+					}else if (itemType == 2) {
+						searchDueDateChromebook(chromebookList);
+					}else {
+						System.out.println("Invalid Option");
+					}
+				}else {
+					System.out.println("Invalid Option");
+				}
 
+				
 			} else if (option == OPTION_QUIT) {
 				System.out.println("Bye!");
 			} else {
@@ -135,7 +167,8 @@ public class ResourceCentre {
 		System.out.println("2. Add item");
 		System.out.println("3. Loan item");
 		System.out.println("4. Return item");
-		System.out.println("5. Quit");
+		System.out.println("5. Search for specific items");
+		System.out.println("6. Quit");
 		Helper.line(80, "-");
 
 	}
@@ -146,7 +179,7 @@ public class ResourceCentre {
 		Helper.line(80, "-");
 	}
 
-	//================================= Option 1 View (CRUD - Read) =================================
+	//================================= Option 1 View (CRUD - Read) ========================================
 	public static String retrieveAllCamcorder(ArrayList<Camcorder> camcorderList) {
 		String output = "";
 
@@ -374,5 +407,38 @@ public class ResourceCentre {
 			System.out.println("Chromebook " + tag + " returned");
 		}
 	}
-
+	
+	//================================= Option 5 Search (CURD- Update)=================================
+	public static String searchDueDateCamcorder(ArrayList<Camcorder> camcorderList) {
+		String output = String.format("%-10s %-30s %-10s %-10s %-20s\n", "ASSET TAG", "DESCRIPTION",
+				"AVAILABLE", "DUE DATE","OPTICAL ZOOM");
+		String dueDate = Helper.readString("Enter due date (dd/MM/yyyy) > ");
+		for(Camcorder cc: camcorderList) {
+			if(cc.getDueDate().equals(dueDate)) {
+				output += String.format("%-10s %-30s %-10s %-10s %-20s\n", cc.getAssetTag(), cc.getDescription(),
+						 cc.getIsAvailable(), cc.getDueDate(), cc.getOpticalZoom());
+			}
+			else {
+				System.out.println("No camcorder found with date input!");
+			}
+		}
+		return output;
+	}
+	
+	public static String searchDueDateChromebook(ArrayList<Chromebook> chromebookList) {
+		String output = String.format("%-10s %-30s %-10s %-10s %-20s\n", "ASSET TAG", "DESCRIPTION",
+				 "AVAILABLE", "DUE DATE","OPERATING SYSTEM");
+		String dueDate = Helper.readString("Enter due date (dd/MM/yyyy) > ");
+		for(Chromebook cb: chromebookList) {
+			if(cb.getDueDate().equals(dueDate)) {
+				output += String.format("%-10s %-30s %-10s %-10s %-20s\n", cb.getAssetTag(), cb.getDescription(),
+						 cb.getIsAvailable(), cb.getDueDate(), cb.getOs());
+			}
+			else {
+				System.out.println("No chromebook found with date input!");
+			}
+		}
+		return output;
+	}
 }
+
